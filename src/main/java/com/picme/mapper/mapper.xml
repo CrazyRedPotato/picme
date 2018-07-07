@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.picme.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.picme.pojo.User">
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="mail" property="mail" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="pwdsalt" property="pwdsalt" jdbcType="VARCHAR" />
+        <result column="pwdhash" property="pwdhash" jdbcType="VARCHAR" />
+    </resultMap>
+ 
+    <!--用户登录 -->
+    <select id="login" parameterType="com.picme.pojo.User" resultType="com.picme.pojo.User">
+        SELECT
+        u.id, u.mail, u.phone, u.pwdsalt, u.pwdhash
+        FROM
+        user_t u
+    </select>
+    
+    <!-- 用户注册 -->
+    <insert id="registered" parameterType="com.picme.pojo.User"  useGeneratedKeys="true" keyProperty="id">
+        INSERT
+        INTO
+        user_t
+        (mail, phone, pwdsalt, pwdhash)
+        VALUES(#{mail,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+        #{pwdsalt,jdbcType=VARCHAR}, #{pwdhash,jdbcType=VARCHAR})
+    </insert>
+    <!-- 用户注册前检查邮箱是否已使用 -->
+    <select id="getbymail" parameterType="String" resultType="com.picme.pojo.User">
+        SELECT
+        u.id, u.mail, u.phone, u.pwdsalt, u.pwdhash
+        FROM
+        user_t u
+        WHERE
+        mail=#{mail,jdbcType=VARCHAR}
+    </select> 
+</mapper> 

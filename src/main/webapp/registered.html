@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册测试</title>
+</head>
+<body>
+<div>注册界面</div>
+<form action="registered/action" method="post">
+<input type="text" name="user.mail" placeholder="邮箱">
+<input type="text" name="user.phone" placeholder="电话">
+<input type="text" name="user.pwd" placeholder="密码">
+<button type="submit">提交</button>
+</form>
+<div>验证邮箱</div>
+<form action="registered/action.checkmail" method="post">
+<input type="text" name="user.mail" placeholder="邮箱">
+<button type="submit">验证邮箱</button>
+</form>
+<br><hr>
+<div>登陆界面</div>
+<form action="login" method="post">
+<input type="text" name="user.mail" placeholder="邮箱">
+<input type="text" name="user.pwd" placeholder="密码">
+<button type="submit">登陆</button>
+</form>
+</body>
+</html>
